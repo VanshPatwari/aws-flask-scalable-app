@@ -13,7 +13,7 @@ connection = pymysql.connect(
 
 @app.route("/")
 def home():
-    return "Flask + RDS Running 🚀"
+    return "CI/CD Working 🚀"
 
 @app.route("/book", methods=["POST"])
 def book():
