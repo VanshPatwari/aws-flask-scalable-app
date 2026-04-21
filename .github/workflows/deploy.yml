@@ -11,19 +11,39 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Deploy to EC2
+      - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
           script: |
+            echo "🚀 Starting deployment..."
+
             cd ~
+
+            # Clone or update repo
+            if [ -d "app" ]; then
+              echo "📂 Repo exists, pulling latest code..."
+              cd app
+              git pull
+            else
+              echo "📥 Cloning repo..."
+              git clone https://github.com/VanshPatwari/aws-flask-scalable-app.git app
+              cd app
+            fi
+
+            echo "🛑 Stopping old app..."
             pkill -f app.py || true
-            git clone https://github.com/VanshPatwari/aws-flask-scalable-app.git app || true
-            cd app
-            git pull
+
+            sleep 2
+
+            echo "📦 Installing dependencies..."
             pip3 install -r requirements.txt
-            nohup python3 app.py &
+
+            echo "🚀 Starting app..."
+            nohup python3 app.py > output.log 2>&1 &
+
+            echo "✅ Deployment complete!"
