@@ -35,11 +35,6 @@ jobs:
               cd app
             fi
 
-            echo "🛑 Stopping old app..."
-            pkill -f app.py || true
-
-            sleep 2
-
             echo "📦 Installing dependencies..."
             pip3 install -r requirements.txt
 
