@@ -1,14 +1,16 @@
 from flask import Flask, request, jsonify
 import pymysql
+import os
 
 app = Flask(__name__)
 
-# DB connection
+# DB connection using environment variables
 connection = pymysql.connect(
-    host="YOUR_RDS_ENDPOINT",
-    user="admin",
-    password="YOUR_PASSWORD",
-    database="clinic"
+    host=os.environ.get("DB_HOST"),
+    user=os.environ.get("DB_USER"),
+    password=os.environ.get("DB_PASSWORD"),
+    database=os.environ.get("DB_NAME"),
+    cursorclass=pymysql.cursors.DictCursor
 )
 
 @app.route("/")
