@@ -1,56 +1,45 @@
-# 🚀 AWS Scalable Flask Application
+# AWS Scalable Flask App 🚀
 
 ## 📌 Overview
 
-A scalable backend application deployed on AWS using EC2, RDS, and Application Load Balancer.
+This project demonstrates deployment of a scalable web application using AWS services.
 
----
+## 🏗️ Architecture
 
-## 🧱 Architecture
+EC2 → Flask App → RDS (MySQL) → API → Internet
+CI/CD via GitHub Actions
 
-User → ALB → EC2 → RDS
+## 🔧 Tech Stack
 
----
-
-## ⚙️ Tech Stack
-
-* Flask (Python)
 * AWS EC2
 * AWS RDS (MySQL)
-* AWS Application Load Balancer
-* Security Groups
+* Application Load Balancer
+* GitHub Actions (CI/CD)
+* Python Flask
 
----
+## 🔐 Security
 
-## 🔥 Features
+* Used environment variables (no hardcoded credentials)
+* Security Groups for controlled access
 
-* REST API for booking system
-* Data stored in MySQL (RDS)
-* Load-balanced architecture
-* Persistent backend server
+## 🚀 How to Run
 
----
+1. Clone repo
+2. Set environment variables:
 
-## 🚀 Deployment Steps
+   * DB_HOST
+   * DB_USER
+   * DB_PASSWORD
+   * DB_NAME
+3. Run:
+   python3 app.py
 
-1. Created EC2 instance and deployed Flask app
-2. Created RDS MySQL database
-3. Connected Flask app to RDS
-4. Configured Load Balancer for scalability
+## 📸 Demo
 
----
+(Add screenshot of your app here)
 
-## 🧠 Learnings
+## 📈 Key Learnings
 
-* Cloud networking (VPC, security groups)
-* EC2 deployment
-* RDS integration
-* Load balancing and scalability
-
----
-
-## 📌 Future Improvements
-
-* Add Auto Scaling
-* Add authentication
-* Add frontend UI
+* Cloud deployment & networking
+* Debugging real-world infra issues
+* CI/CD automation
